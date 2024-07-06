@@ -1,6 +1,7 @@
 global using Microsoft.EntityFrameworkCore;
 global using SuperHero.Data;
 global using SuperHero.Entities;
+global using SuperHero.Services.HeroService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+
+builder.Services.AddScoped<IHeroService, HeroService>();
 
 var app = builder.Build();
 
